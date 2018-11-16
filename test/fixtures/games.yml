@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  columns: 1
+  rows: 1
+  state: MyString
+  winner: MyString
+
+two:
+  columns: 1
+  rows: 1
+  state: MyString
+  winner: MyString
