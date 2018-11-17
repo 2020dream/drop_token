@@ -10,7 +10,7 @@ class Game < ApplicationRecord
         rows = game_params[:rows]
         players = game_params[:players]
 
-        if players.count != 2
+        if players.nil? || players.count != 2
             return nil
         end
 
