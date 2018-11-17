@@ -4,19 +4,19 @@ describe GamesController do
 
   describe 'index' do
     it "should get index" do
-      get games_url
+      get get_games_url
       must_respond_with 200
     end
   end
 
   describe 'show' do
     it "can get a game" do
-      get game_path(games(:one).id)
+      get get_game_url(games(:one).id)
       must_respond_with 200
     end
 
     it "returns 404 for games that are not found" do
-      get game_path(3000)
+      get get_game_url(3000)
       must_respond_with 404
     end
   end
@@ -33,7 +33,7 @@ describe GamesController do
       }
 
       proc {
-        post games_url, params: game
+        post add_game_url, params: game
       }.must_change 'Game.count', 1
       body = JSON.parse(response.body)
 
@@ -52,7 +52,7 @@ describe GamesController do
       }
 
       proc {
-        post games_url, params: game
+        post add_game_url, params: game
       }.must_change 'Game.count', 0
       body = JSON.parse(response.body)
 
@@ -69,7 +69,7 @@ describe GamesController do
       }
 
       proc {
-        post games_url, params: game
+        post add_game_url, params: game
       }.must_change 'Game.count', 0
       body = JSON.parse(response.body)
 

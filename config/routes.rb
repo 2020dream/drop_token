@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :games, only: [:index, :show, :create]
+  get '/drop_token', to: 'games#index', as: 'get_games'
+
+  get '/drop_token/:gameId', to: 'games#show', as: 'get_game'
+
+  post '/drop_token', to: 'games#create', as: 'add_game'
 
   get '/drop_token/:gameId/moves', to: 'moves#index', as: 'get_moves'
 

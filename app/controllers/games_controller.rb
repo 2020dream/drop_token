@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find_by(id: params[:id])
+    @game = Game.find_by(id: params[:gameId])
     
     if @game.nil?
       render json: { :errors => "Game not found." }, status: 404      
