@@ -10,6 +10,10 @@ class Game < ApplicationRecord
         rows = game_params[:rows]
         players = game_params[:players]
 
+        if players.count != 2
+            return nil
+        end
+
         game = Game.create(columns: columns, rows: rows, state: "IN_PROGRESS")
         if players != nil
             players.each do |player|

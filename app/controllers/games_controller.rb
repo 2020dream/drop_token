@@ -7,12 +7,12 @@ class GamesController < ApplicationController
     @game = Game.find_by(id: params[:id])
 
     if @game.nil?
-      render json: { ok: false, :errors => "Game not found" }, status: :not_found      
+      render json: { :errors => "Game not found." }, status: 404      
     else
       if !@game.winner
-        render json: @game.as_json(only: :state, :include => { :players => { only: :name }}), status: :ok
+        render json: @game.as_json(only: :state, :include => { :players => { only: :name } } ), status: 200
       else 
-        render json: @game.as_json(only: [:state, :winner], :include => { :players => { only: :name }}), status: :ok
+        render json: @game.as_json(only: [:state, :winner], :include => { :players => { only: :name } } ), status: 200
       end
     end
 
@@ -22,9 +22,9 @@ class GamesController < ApplicationController
     @game = Game.create_with_players(game_params)
 
     if @game.valid?
-      render json: @game.as_json(only: :id), status: :ok
+      render json: @game.as_json(only: :id), status: 200
     else
-      render json: { ok: false, :errors => "Malformed request" }, status: :bad_request
+      render json: { :errors => "Malformed request: Columns and rows should be 4. And number of players should exactly be 2." }, status: 400
     end
   end
 
