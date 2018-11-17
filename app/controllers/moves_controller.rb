@@ -34,9 +34,10 @@ class MovesController < ApplicationController
 
       if @game.moves.count == 16 && !@game.won?
         @game.update(state: "Done")
-        render json: { :messages => "Game is Done. There is no winner"}, status: :ok
+        render json: { :messages => "Game over. There is no winner"}, status: :ok
       elsif @game.won?
-        render json: { :messages => "Move added successfully. and #{@player.name} just won the game! Congrats!"}, status: :ok
+        @game.update(state: "Done", winner: @player.name)
+        render json: { :messages => "Move added successfully. And #{@player.name} just won the game! Congrats!"}, status: :ok
       else
         render json: { :messages => "Move added successfully"}, status: :ok 
       end 
@@ -71,7 +72,7 @@ class MovesController < ApplicationController
 
         Move.create!(category: 'Quit', move_number: total_moves, game: @game, player: @player)
 
-        render json: { :messages => "Game is Done. Winner is #{@winner.name}"}, status: :ok       
+        render json: { :messages => "Game over. Winner is #{@winner.name}"}, status: :ok       
       end
     end
   end
