@@ -1,15 +1,179 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# Horizontal
 one:
-  category: 
-  column: 1
-  move_number: 1
+  category: 'Move'
+  column: 0
+  move_number: 0
   game: one
   player: one
 
 two:
-  category: 
+  category: 'Move'
+  column: 0
+  move_number: 1
+  game: one
+  player: two
+
+three:
+  category: 'Move'
+  column: 1
+  move_number: 2
+  game: one
+  player: one
+
+four:
+  category: 'Move'
+  column: 1
+  move_number: 3
+  game: one
+  player: two
+
+five:
+  category: 'Move'
+  column: 2
+  move_number: 4
+  game: one
+  player: one
+
+six:
+  category: 'Move'
+  column: 2
+  move_number: 5
+  game: one
+  player: two
+
+seven:
+  category: 'Move'
+  column: 3
+  move_number: 6
+  game: one
+  player: one
+
+# Vertical
+eight:
+  category: 'Move'
+  column: 0
+  move_number: 0
+  game: two
+  player: three
+
+nine:
+  category: 'Move'
   column: 1
   move_number: 1
   game: two
-  player: two
+  player: four
+
+ten:
+  category: 'Move'
+  column: 0
+  move_number: 2
+  game: two
+  player: three
+
+eleven:
+  category: 'Move'
+  column: 1
+  move_number: 3
+  game: two
+  player: four
+
+twelve:
+  category: 'Move'
+  column: 0
+  move_number: 4
+  game: two
+  player: three
+
+thirteen:
+  category: 'Move'
+  column: 1
+  move_number: 5
+  game: two
+  player: four
+
+fourteen:
+  category: 'Move'
+  column: 0
+  move_number: 6
+  game: two
+  player: three
+
+# Diagonal
+fifteen:
+  category: 'Move'
+  column: 0
+  move_number: 0
+  game: three
+  player: five
+
+sixteen:
+  category: 'Move'
+  column: 1
+  move_number: 1
+  game: three
+  player: six
+
+seventeen:
+  category: 'Move'
+  column: 1
+  move_number: 2
+  game: three
+  player: five
+
+eighteen:
+  category: 'Move'
+  column: 2
+  move_number: 3
+  game: three
+  player: six
+
+nineteen:
+  category: 'Move'
+  column: 3
+  move_number: 4
+  game: three
+  player: five
+
+twenty:
+  category: 'Move'
+  column: 2
+  move_number: 5
+  game: three
+  player: six
+
+twentyone:
+  category: 'Move'
+  column: 2
+  move_number: 6
+  game: three
+  player: five
+
+twentytwo:
+  category: 'Move'
+  column: 0
+  move_number: 7
+  game: three
+  player: six
+
+twentythree:
+  category: 'Move'
+  column: 3
+  move_number: 8
+  game: three
+  player: five
+
+twentyfour:
+  category: 'Move'
+  column: 3
+  move_number: 9
+  game: three
+  player: six
+
+twentyfive:
+  category: 'Move'
+  column: 3
+  move_number: 10
+  game: three
+  player: five

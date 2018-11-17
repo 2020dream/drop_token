@@ -11,3 +11,15 @@ two:
   rows: 4
   state: "IN_PROGRESS"
   winner: NULL
+
+three:
+  columns: 4
+  rows: 4
+  state: "IN_PROGRESS"
+  winner: NULL
+
+four:
+  columns: 4
+  rows: 4
+  state: "IN_PROGRESS"
+  winner: NULL

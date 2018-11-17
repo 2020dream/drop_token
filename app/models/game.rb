@@ -15,10 +15,8 @@ class Game < ApplicationRecord
         end
 
         game = Game.create(columns: columns, rows: rows, state: "IN_PROGRESS")
-        if players != nil
-            players.each do |player|
-                Player.create(name: player[:name], game_id: game.id)
-            end
+        players.each do |player|
+            Player.create(name: player[:name], game_id: game.id)
         end
 
         return game
@@ -28,7 +26,8 @@ class Game < ApplicationRecord
         board_matrix = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
         column_position = [3, 3, 3, 3]
         current_value = 1
-        self.moves.each do |move|
+        moves = self.moves.sort_by { |move| move.move_number }
+        moves.each do |move|
             board_matrix[column_position[move.column]][move.column] = current_value
             current_value = -current_value
             column_position[move.column] -= 1
@@ -40,6 +39,8 @@ class Game < ApplicationRecord
             return false
         end
     end
+
+    private
 
     def win_horizontal?(board_matrix)
         board_matrix.each do |row|

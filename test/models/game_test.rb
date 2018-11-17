@@ -26,4 +26,26 @@ describe Game do
     end
   end
 
+  describe 'won?' do
+    it "returns true when a player wins horizontally" do
+      game = games(:one)
+      game.won?.must_equal true
+    end
+
+    it "returns true when a player wins vertically" do
+      game = games(:two)
+      game.won?.must_equal true
+    end
+
+    it "returns true when a player wins diagonally" do
+      game = games(:three)
+      game.won?.must_equal true
+    end
+
+    it "returns false when no one wins" do
+      game = games(:four)
+      game.won?.must_equal false
+    end
+  end
+
 end
