@@ -14,6 +14,34 @@ class MovesController < ApplicationController
   end
 
   def create
+    @game = Game.find_by(id: params[:gameId])
+    @player = Player.find_by(id: params[:playerId])
+
+    if @game.nil?
+      render json: { :errors => "Game is not found"}, status: :not_found
+    elsif @player.nil?
+      render json: { :errors => "Player is not found"}, status: :not_found
+    elsif !@game.players.include?(@player)
+      render json: { :errors => "Player is not a part of the game" }, status: :not_found
+    elsif @game.state == "Done"
+      render json: {:errors => "Game is already in DONE state"}, status: 410
+    elsif @game.moves.last.player.id == @player.id
+      render json: { :errors => "Player tried to post when it's not their turn" }, status: 409
+    elsif @game.moves.where(column: params[:column]).count >= 4
+      render json: { :errors => "Column is full. Please choose another column." }, status: 400
+    else
+      Move.create!(category: 'Move', column: params[:column], move_number: @game.moves.count, game: @game, player: @player)
+
+      if @game.moves.count == 16 && !@game.won?
+        @game.update(state: "Done")
+        render json: { :messages => "Game is Done. There is no winner"}, status: :ok
+      elsif @game.won?
+        render json: { :messages => "Move added successfully. and #{@player.name} just won the game! Congrats!"}, status: :ok
+      else
+        render json: { :messages => "Move added successfully"}, status: :ok 
+      end 
+    end
+    
   end
 
   def quit

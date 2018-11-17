@@ -19,4 +19,8 @@ class Game < ApplicationRecord
 
         return game
     end
+    
+    def won?
+        return false
+    end
 end
