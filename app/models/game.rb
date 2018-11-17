@@ -2,8 +2,8 @@ class Game < ApplicationRecord
     has_many :moves
     has_many :players
 
-    validates :columns, :numericality => { equal_to: 4 }
-    validates :rows, :numericality => { equal_to: 4 }
+    validates :columns, presence: true, :numericality => { only_integer: true, equal_to: 4 }
+    validates :rows, presence: true, :numericality => { only_integer: true, equal_to: 4 }
 
     def self.create_with_players(game_params)
         columns = game_params[:columns]

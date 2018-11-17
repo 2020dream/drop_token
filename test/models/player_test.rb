@@ -27,6 +27,11 @@ describe Player do
       player.name = nil
       player.valid?.must_equal false
     end
+
+    it "is invalid if name already exists" do
+      new_player = Player.new(name: players(:one).name)
+      new_player.valid?.must_equal false
+    end
   end
 
 end
