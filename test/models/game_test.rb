@@ -6,6 +6,14 @@ describe Game do
     it "has two players" do
       games(:one).players.length.must_equal 2
     end
+
+    it "has moves" do
+      games(:one).moves.length.must_equal 7
+    end
+
+    it "can have no moves" do
+      games(:four).moves.length.must_equal 0
+    end
   end
 
   describe 'validations' do
