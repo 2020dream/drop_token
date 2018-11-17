@@ -1,22 +1,22 @@
 class MovesController < ApplicationController
   def index
-    @game = Game.find_by(id: params[:id])
+    @game = Game.find_by(id: params[:gameId])
 
     if @game.nil?
-      render json: { :errors => "Game is not found." }, status: 404
+      render json: { :errors => "Game not found." }, status: 404
     else
       @moves = @game.moves
     end
   end
 
   def show
-    # TODO: fix logic here.
-    @move = Move.find_by(move_number: params[:id])
+    @game = Game.find_by(id: params[:gameId])
+    @move = @game.moves.find_by(move_number: params[:move_number])
 
     if @move.nil?
-      render json: { ok: false, :errors => "Move not found" }, status: :not_found 
+      render json: { :errors => "Move not found." }, status: 404 
     else
-      render json: @move.as_json(only: [:type, :column], :include => { :player => { only: :name }}), status: :ok
+      render json: @move.as_json(only: [:type, :column], :include => { :player => { only: :name }}), status: 200
     end
   end
 
