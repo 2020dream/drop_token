@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_200623) do
+ActiveRecord::Schema.define(version: 2018_11_17_053906) do
 
   create_table "games", force: :cascade do |t|
     t.integer "columns"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2018_11_16_200623) do
   end
 
   create_table "moves", force: :cascade do |t|
-    t.string "type"
+    t.string "category"
     t.integer "column"
     t.integer "move_number"
     t.integer "game_id"
