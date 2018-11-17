@@ -25,4 +25,36 @@ describe GamesController do
     #   must_respond_with :bad_request
     # end
   end
+
+  describe 'create' do
+    it "can create a valid game" do
+      game = {
+        columns: 4,
+        rows: 4,
+        players: [
+          { name: 'test1' },
+          { name: 'test2' }
+        ]
+      }
+
+      proc {
+        post games_url, params: game
+      }.must_change 'Game.count', 1
+      body = JSON.parse(response.body)
+
+      must_respond_with :success
+      body.keys.must_include 'id'
+    end
+
+    it "should return 400 when given an invalid game" do
+      game = {}
+
+      proc {
+        post games_url, params: game
+      }.must_change 'Game.count', 0
+      body = JSON.parse(response.body)
+
+      must_respond_with :bad_request
+    end
+  end
 end

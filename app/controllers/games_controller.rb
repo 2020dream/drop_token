@@ -19,7 +19,18 @@ class GamesController < ApplicationController
   end
 
   def create
+    @game = Game.create_with_players(game_params)
 
+    if @game.valid?
+      render json: @game.as_json(only: :id), status: :ok
+    else
+      render json: { ok: false, :errors => "Malformed request" }, status: :bad_request
+    end
   end
 
+  private
+
+  def game_params
+    return params.permit(:columns, :rows, players: [:name])
+  end
 end
