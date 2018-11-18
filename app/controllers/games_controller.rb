@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+
   def index
     @games = Game.all
   end
@@ -34,4 +35,5 @@ class GamesController < ApplicationController
   def game_params
     return params.permit(:columns, :rows, players: [:name])
   end
+  
 end

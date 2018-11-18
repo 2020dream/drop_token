@@ -3,7 +3,7 @@ require 'test_helper'
 describe GamesController do
 
   describe 'index' do
-    it "should get index" do
+    it "should get games" do
       get get_games_url
       must_respond_with 200
     end

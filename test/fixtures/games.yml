@@ -23,3 +23,9 @@ four:
   rows: 4
   state: "IN_PROGRESS"
   winner: NULL
+
+five:
+  columns: 4
+  rows: 4
+  state: "Done"
+  winner: "Xixi"

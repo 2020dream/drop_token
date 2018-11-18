@@ -19,11 +19,6 @@ describe Move do
       move.valid?.must_equal true
     end
 
-    it "is invalid without column" do
-      move.column = nil
-      move.valid?.must_equal false
-    end
-
     it "is invalid with wrong value of column" do
       move.column = 4
       move.valid?.must_equal false

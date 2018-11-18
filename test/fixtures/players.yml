@@ -31,3 +31,11 @@ seven:
 eight:
   name: "Margaret"
   game: four
+
+nine:
+  name: "Xixi"
+  game: five
+
+ten:
+  name: "Haha"
+  game: five
