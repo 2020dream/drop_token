@@ -7,6 +7,8 @@ class MovesController < ApplicationController
       render json: { :errors => "Game not found." }, status: 404
     else
       @moves = @game.moves
+
+      render json: @moves.as_json(only: [:category, :column], :include => { :player => { only: :name }}), status: 200
     end
   end
 
@@ -21,7 +23,7 @@ class MovesController < ApplicationController
       if @move.nil?
         render json: { :errors => "Move not found." }, status: 404 
       else
-        render json: @move.as_json(only: [:type, :column], :include => { :player => { only: :name }}), status: 200
+        render json: @move.as_json(only: [:category, :column], :include => { :player => { only: :name }}), status: 200
       end
     end
   end
@@ -45,16 +47,16 @@ class MovesController < ApplicationController
       elsif @game.moves.where(column: params[:column]).count >= 4
         render json: { :errors => "Column is full. Please choose another column." }, status: 400
       else
-        Move.create(category: 'Move', column: params[:column], move_number: @game.moves.count, game: @game, player: @player)
+        @move = Move.create(category: 'Move', column: params[:column], move_number: @game.moves.count, game: @game, player: @player)
 
         if @game.won?
           @game.update(state: "Done", winner: @player.name)
-          render json: { :messages => "Move added successfully. And #{@player.name} just won the game! Congrats!" }, status: 200
+          render json: { :move => "#{@game.id}/moves/#{@move.move_number}", :messages => "#{@player.name} just won the game! Congrats!" }, status: 200
         elsif @game.moves.count == 16
           @game.update(state: "Done")
-          render json: { :messages => "Game over. There is no winner." }, status: 200
+          render json: { :move => "#{@game.id}/moves/#{@move.move_number}", :messages => "Game over. There is no winner." }, status: 200
         else
-          render json: { :messages => "Move added successfully." }, status: 200
+          render json: { :move => "#{@game.id}/moves/#{@move.move_number}" }, status: 200
         end 
       end
     end
