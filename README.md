@@ -35,15 +35,19 @@ To install, run: `gem install rails --no-rdoc --no-ri`
 To verify, run: `rails -v`
 
 ## Project Setup
-In terminal, follow this steps to setup the project
+
+In terminal, follow this steps to setup the server:
 
 1. `git clone https://github.com/choricao/drop_token.git`
 2. `cd drop_token`
-3. `rails db:create`
-4. `rails db:migrate`
-5. `rails db:seed`
-6. `rails s`
+3. `bundle install`
+4. `rails db:create`
+5. `rails db:migrate`
+6. `rails db:seed`
+7. `rails s`
 
-## Test Out
+Base URL for integration tests is `localhost:3000`.
 
-URL: localhost:3000
+## Automatic Test Suite
+
+This project was finished with TDD practice. To check out testing results, in terminal run: `rails test`.
